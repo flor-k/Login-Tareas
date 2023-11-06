@@ -1,0 +1,21 @@
+*{
+    padding:0px;
+    margin:0px;
+    font-family: 'Courier New', Courier, monospace;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: whitesmoke;
+}
+
+*::selection {
+    background: blueviolet;
+    color: white;
+}
