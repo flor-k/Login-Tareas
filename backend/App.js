@@ -12,7 +12,10 @@ app.use(express.json())
 app.get('/user/:userid', controllers.getUserById)
 app.post('/login', controllers.login)
 app.post('/register', controllers.register)
-
+app.post('/registroTareas', controllers.registroTareas)
+app.post('/eliminarTarea', controllers.eliminarTarea)
+app.get('/getTareas', controllers.getTareas)
+app.post('/modificarTarea', controllers.modificarTarea)
 
 const PORT = 4000
 

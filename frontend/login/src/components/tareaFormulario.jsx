@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import '../css/tareaFormulario.css';
 import {v4 as uuidv4} from 'uuid';
 
-function TareaFormulario(props){
+function TareaFormulario(params){
 
     const [input, setInput] = useState('');
 
@@ -13,13 +13,7 @@ function TareaFormulario(props){
     const manejarEnvio = e => 
     {
         e.preventDefault();
-        const tareaNueva = {
-            id: uuidv4(),
-            texto: input,
-            completada: false
-        }
-
-        props.onSubmit(tareaNueva);
+        params.onSubmit(input, false);
     }
 
     return(

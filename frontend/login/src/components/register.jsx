@@ -11,15 +11,7 @@ const Register = () => {
     password: "",
   });
 
-  /*
-  inputs.mail = 'jk@gmail.com' -- 0xf4887262624534 - [3, 'jk@gmail.com','' ,'']
-  setInputs(inputs);          -- 0xf4887262624534 - [3, '','' ,'']
-  setInputs({ ...inputs, mail: 'fk@gmail.com' });  --0xH23947239847 - [3, 'fk@gmail.com','' ,'']
-
-
-  setmensaje('aaa') -- 0xf4887262624534 - 1,'aaa'
-  setMensaje(bbb') -- 0xf4887262624534 - 0,'aaa', -- 0x3456345435 -- 1,'bbb'
-*/
+ 
 
 
   const [mensaje, setMensaje] = useState();

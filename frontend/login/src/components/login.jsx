@@ -37,7 +37,7 @@ const Login = () => {
           setInputs({ password: "", mail: "" });
           setTimeout(() => {
             setMensaje("");
-            navigate(`/welcome/${data?.usuario.id}`);
+            navigate(`/welcome?id=${data?.usuario.id}`);
           }, 3000);
         })
         .catch((error) => {

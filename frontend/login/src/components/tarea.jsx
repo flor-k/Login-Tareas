@@ -8,7 +8,7 @@ function Tarea({id, texto, completada, completarTarea, eliminarTarea}) {
         <div className={completada?'tarea-contenedor completada': 'tarea-contenedor'}>
             <div 
             onClick={()=>
-                completarTarea(id)
+                completarTarea(id, !completada, texto)
             }
             className="tarea-texto">
                 {texto}
