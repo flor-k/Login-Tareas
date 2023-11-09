@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import '../css/login.css';
 import styles from "./styles.module.scss";
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
   const [inputs, setInputs] = useState({
@@ -37,7 +39,8 @@ const Login = () => {
           setInputs({ password: "", mail: "" });
           setTimeout(() => {
             setMensaje("");
-            navigate(`/welcome?id=${data?.usuario.id}`);
+            localStorage.setItem("idUser", data?.usuario.id);
+            navigate(`/welcome`);
           }, 3000);
         })
         .catch((error) => {
@@ -53,7 +56,8 @@ const Login = () => {
   };
 
   return (
-    <>
+    <GoogleOAuthProvider clientId="551474241522-0i4b8i7ua9tstg2534j90iascgg4l388.apps.googleusercontent.com">
+    <div className="login">
       <div className={styles.formContainer}>
         <h3>Bienvenido a la pagina</h3>
         <h2>De Login!</h2>
@@ -113,6 +117,14 @@ const Login = () => {
           <button type="submit">
             {loading ? "Cargando..." : "Login"}
           </button>
+          <GoogleLogin
+  onSuccess={credentialResponse => {
+    console.log(credentialResponse);
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+/>
           <p>
             No tienes una cuenta?{" "}
             <b onClick={() => navigate("/")}>Registrate!</b>
@@ -120,7 +132,8 @@ const Login = () => {
         </form>
       </div>
       {mensaje && <div className={styles.toast}>{mensaje}</div>}
-    </>
+    </div>
+    </GoogleOAuthProvider>
   );
 };
 

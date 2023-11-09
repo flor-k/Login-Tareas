@@ -3,7 +3,7 @@ import Login from "./components/login";
 import Register from "./components/register";
 import Welcome from "./components/welcome";
 import styles from './App.module.scss';
-
+import PostUnico from "./components/postUnico";
 
 const App = ()=>{
   return (
@@ -12,6 +12,7 @@ const App = ()=>{
       <Route path="/" element={<Register/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/welcome" element={<Welcome/>}/>
+      <Route path="/post" element={<PostUnico/>}/>
       </Routes>
       
       </div></BrowserRouter>

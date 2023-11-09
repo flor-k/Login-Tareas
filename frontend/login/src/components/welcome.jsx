@@ -1,19 +1,34 @@
 import React from "react";
-import ListaDeTareas from "./listaDeTareas";
-
-
+import Menu from "./menu";
+import PaginaActual from "./paginaActual";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import '../css/welcome.css';
 
 
 const Welcome = ()=>{
+  const [codigoPagina, setCodigoPagina] = useState('')
+  const navigate = useNavigate();
+  const irAPagina = (codigo)=>{
+    if(codigo=='SALIR'){
+      navigate("/login");
+    }else{setCodigoPagina(codigo)}
+  }
 
-    const urlSearchString = window.location.search;
-    const params = new URLSearchParams(urlSearchString);
-    const idUser = params.get('id');
+  const [idPost, setIdPost] = useState()
+    const irAPost = (e)=>{
+      if(e){
+        setIdPost(e.target.value)
+      }else{
+        setIdPost(null)
+      }
+    }
+
     return(
-        <><div className='tareas-lista-principal'>
-        <h1>Mis Tareas</h1>
-        <ListaDeTareas idUser={idUser}/>
-      </div></>
+        <div className="welcome">
+            <Menu funcionMenu = {irAPagina}  irAPost={irAPost}/>
+            <PaginaActual codigoPagina = {codigoPagina}  irAPost={irAPost} irAPagina={irAPagina} idPost={idPost}/>
+      </div>
     )
 }
 

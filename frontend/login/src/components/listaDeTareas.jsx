@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import TareaFormulario from './tareaFormulario.jsx';
 import '../css/listaDeTareas.css';
 import Tarea from './tarea.jsx';
@@ -67,12 +67,12 @@ const modificarTareaServicio = (idTarea,completada, tarea ) => {
 
 
 function ListaDeTareas(params) {
+
     const [tareas, setTareas] = useState([]);
-    const [idUser, setIdUser] = useState(params.idUser);
+    const [idUser, setIdUser] = useState(localStorage.getItem("idUser"));
 
     useEffect(()=>{
-        console.log('al crear por primera vez el componente ',params.idUser);
-        buscarTareasServicio(params.idUser).then((tareasRes)=>{
+        buscarTareasServicio(idUser).then((tareasRes)=>{
             setTareas([...tareasRes]);
         })
     },[])
@@ -82,7 +82,7 @@ function ListaDeTareas(params) {
         console.log('click en eliminar tarea')
         eliminarTareaServicio(key).then(()=>{
             console.log('tarea eliminada')
-            buscarTareasServicio(params.idUser).then((tareasRes)=>{
+            buscarTareasServicio(idUser).then((tareasRes)=>{
                 console.log('actualizando tareas luego de eliminar')
                 setTareas([...tareasRes]);
             });
@@ -114,7 +114,8 @@ function ListaDeTareas(params) {
 
    
     return (
-        <>
+        <div className='listaDeTareas'>
+            <h1>Mis Tareas</h1>
             <TareaFormulario onSubmit={registroTareas} />
             <div className='tareas-lista-contenedor'>
                 {
@@ -130,7 +131,7 @@ function ListaDeTareas(params) {
                     )
                 }
             </div>
-        </>
+        </div>
 
 
     );

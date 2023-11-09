@@ -1,0 +1,6 @@
+.welcome{
+    display: flex;
+    flex-flow: row;
+    margin: 0;
+    padding: 0;
+}

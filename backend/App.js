@@ -16,6 +16,8 @@ app.post('/registroTareas', controllers.registroTareas)
 app.post('/eliminarTarea', controllers.eliminarTarea)
 app.get('/getTareas', controllers.getTareas)
 app.post('/modificarTarea', controllers.modificarTarea)
+app.get('/getPosts', controllers.getPosts)
+app.post('/registroPost', controllers.registroPost)
 
 const PORT = 4000
 

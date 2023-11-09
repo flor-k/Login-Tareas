@@ -1,0 +1,38 @@
+.leftMenu {
+    display: block;
+    text-align: center;
+    float: left;
+    height: 94vh;
+    border: 1px solid #778390;
+    width: 120px;
+    background-color: #a6d4fc;
+    color: white;
+    margin-right: 30px;
+}
+
+.leftMenu ul {
+    margin-top: 0;
+    list-style: none;
+    padding: 0;
+}
+
+.leftMenu li {
+    text-align: center;
+    border-bottom: 1px solid #a6d4fc;
+    padding-bottom: 18px;
+    padding-top: 18px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.leftMenu li:hover {
+    background-color: #5d9eca;
+}
+
+.leftMenu li button {
+    margin: 0;
+    background-color: chartreuse;
+    border: none;
+    padding: 15px;
+    width: 5rem;
+}
