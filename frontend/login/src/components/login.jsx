@@ -5,6 +5,7 @@ import '../css/login.css';
 import styles from "./styles.module.scss";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   const [inputs, setInputs] = useState({
@@ -22,13 +23,46 @@ const Login = () => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    if (password !== "" && mail !== "") {
+  const onSubmit = async (e, mailG, nameG) => {
+    
+    if (e && password !== "" && mail !== "" ) {
+      e.preventDefault();
       const Usuario = {
         
         mail,
+        mailG: null,
+        nameG: null,
         password,
+      };
+      setLoading(true);
+      await axios
+        .post("http://localhost:4000/login", Usuario)
+        .then((res) => {
+          const { data } = res;
+          setMensaje(data.message);
+          setInputs({ password: "", mail: "" });
+          setTimeout(() => {
+            setMensaje("");
+            localStorage.setItem("idUser", data?.usuario.id);
+            navigate(`/welcome`);
+          }, 3000);
+        })
+        .catch((error) => {
+          console.error(error);
+          setMensaje("Hubo un error");
+          setTimeout(() => {
+            setMensaje("");
+          }, 1500);
+        });
+
+      setLoading(false);
+    }else if(mailG!=''){
+      const Usuario = {
+        
+        mail: null,
+        mailG,
+        nameG,
+        password: null,
       };
       setLoading(true);
       await axios
@@ -119,7 +153,9 @@ const Login = () => {
           </button>
           <GoogleLogin
   onSuccess={credentialResponse => {
-    console.log(credentialResponse);
+    let decode = jwtDecode(credentialResponse.credential)
+    console.log(decode);
+    onSubmit(null, decode.email, decode.given_name + ' '+ decode.family_name)
   }}
   onError={() => {
     console.log('Login Failed');

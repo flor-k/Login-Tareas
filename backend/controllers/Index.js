@@ -7,7 +7,10 @@ const eliminarTarea = require('./eliminarTarea.js')
 const getTareas = require('./getTareas.js')
 const getPosts = require('./getPosts.js')
 const modificarTarea = require('./modificarTarea.js')
+const getMensajes = require('./getMensajes.js')
+const registroMensaje = require('./registroMensaje.js');
 
 module.exports = {
-    register, login, getUserById, registroTareas, eliminarTarea, getTareas, modificarTarea, getPosts, registroPost
+    register, login, getUserById, registroTareas, eliminarTarea, getTareas, modificarTarea, getPosts, registroPost,
+    getMensajes, registroMensaje
 }

@@ -9,7 +9,7 @@ const controllers = require('./controllers/Index.js');
 app.use(cors())
 app.use(express.json())
 
-app.get('/user/:userid', controllers.getUserById)
+app.get('/user', controllers.getUserById)
 app.post('/login', controllers.login)
 app.post('/register', controllers.register)
 app.post('/registroTareas', controllers.registroTareas)
@@ -18,6 +18,8 @@ app.get('/getTareas', controllers.getTareas)
 app.post('/modificarTarea', controllers.modificarTarea)
 app.get('/getPosts', controllers.getPosts)
 app.post('/registroPost', controllers.registroPost)
+app.get('/getMensajes', controllers.getMensajes)
+app.post('/registroMensaje', controllers.registroMensaje)
 
 const PORT = 4000
 

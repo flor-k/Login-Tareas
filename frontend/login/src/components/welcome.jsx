@@ -4,13 +4,14 @@ import PaginaActual from "./paginaActual";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../css/welcome.css';
-
+import { googleLogout } from '@react-oauth/google';
 
 const Welcome = ()=>{
   const [codigoPagina, setCodigoPagina] = useState('')
   const navigate = useNavigate();
   const irAPagina = (codigo)=>{
     if(codigo=='SALIR'){
+      googleLogout();
       navigate("/login");
     }else{setCodigoPagina(codigo)}
   }

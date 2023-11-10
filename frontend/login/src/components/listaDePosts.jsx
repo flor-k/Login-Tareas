@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import PostFormulario from "./postFormulario";
-import Post from "./post";
 import axios from "axios";
 import '../css/listaDePost.css';
+
+
+
+
 
 const buscarPostServicio = async () => {
     return new Promise((resolve, reject) => {
@@ -21,10 +24,10 @@ const buscarPostServicio = async () => {
 }
 
 
-const registroPostServicio = (idUser, titulo, post) => {
+const registroPostServicio = (idUser, userName, titulo, post) => {
     return new Promise((resolve, reject) => {
         axios
-            .post(`http://localhost:4000/registroPost`, { idUser, titulo, post })
+            .post(`http://localhost:4000/registroPost`, { idUser, userName, titulo, post })
             .then((res) => {
                 resolve();
             })
@@ -40,15 +43,11 @@ const ListaDePosts = (params) => {
 
     const [posts, setPosts] = useState([])
     const [idUser, setIdUser] = useState(localStorage.getItem("idUser"));
-    const [tituloP, setTituloP] = useState('')
-    const [textoP, setTextoP] = useState('')
 
 
     useEffect(()=>{
         buscarPostServicio().then((postRes)=>{
             setPosts([...postRes]);
-            setTituloP(postRes.titulo);
-            setTextoP(postRes.post);
         })
     },[])
 
