@@ -24,10 +24,10 @@ const buscarPostServicio = async () => {
 }
 
 
-const registroPostServicio = (idUser, userName, titulo, post) => {
+const registroPostServicio = (idUser, titulo, post) => {
     return new Promise((resolve, reject) => {
         axios
-            .post(`http://localhost:4000/registroPost`, { idUser, userName, titulo, post })
+            .post(`http://localhost:4000/registroPost`, { idUser, titulo, post })
             .then((res) => {
                 resolve();
             })
@@ -51,8 +51,8 @@ const ListaDePosts = (params) => {
         })
     },[])
 
-    const registroPost = (titulo, texto) => {
-        registroPostServicio(idUser, titulo, texto).then(() => {
+    const registroPost = (titulo, post) => {
+        registroPostServicio(idUser, titulo, post).then(() => {
             buscarPostServicio().then((postRes) => {
                 setPosts(postRes);
             });
@@ -67,7 +67,7 @@ const ListaDePosts = (params) => {
             <div className='posts-lista-contenedor'>
                 {
                     posts.map((post) =>
-                        <button
+                        <button className="post-button"
                             key={post._id}
                             onClick = {params.irAPost}
                             value={post._id}

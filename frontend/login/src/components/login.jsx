@@ -68,6 +68,7 @@ const Login = () => {
       await axios
         .post("http://localhost:4000/login", Usuario)
         .then((res) => {
+          console.log('LLEGUE')
           const { data } = res;
           setMensaje(data.message);
           setInputs({ password: "", mail: "" });

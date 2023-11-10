@@ -7,7 +7,7 @@ import '../css/welcome.css';
 import { googleLogout } from '@react-oauth/google';
 
 const Welcome = ()=>{
-  const [codigoPagina, setCodigoPagina] = useState('')
+  const [codigoPagina, setCodigoPagina] = useState('TAREAS')
   const navigate = useNavigate();
   const irAPagina = (codigo)=>{
     if(codigo=='SALIR'){

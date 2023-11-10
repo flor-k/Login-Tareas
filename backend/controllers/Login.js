@@ -6,7 +6,7 @@ const Login = async (req, res) => {
     const { mail, mailG, nameG,  password } = req.body;
     console.log(req.body)
     if (mailG) {
-        User.findOne({ mailG }).then((user)=>{
+        User.findOne({ mailG: mailG }).then((user)=>{
             if (!user) {
                 const newUser = new User({
                     name: nameG, mail: mailG, mailG
@@ -14,6 +14,7 @@ const Login = async (req, res) => {
 
                 newUser.save().then((user2)=>{
                     const { id, name } = user2
+                    console.log('LLEGUE BACK')
                     res.json({
                         message: 'usuario logueado correctamente',
                         usuario: {

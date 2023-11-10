@@ -3,7 +3,7 @@ import ListaDeTareas from "./listaDeTareas";
 import ListaDePosts from "./listaDePosts";
 import '../css/paginaActual.css';
 import PostUnico from "./postUnico";
-
+import Mapa from "./mapa.jsx";
 
 
 const PaginaActual = (params)=>{
@@ -13,7 +13,9 @@ const PaginaActual = (params)=>{
 
 return(
     params.idPost? <PostUnico idPost = {params.idPost}/> :
-    params.codigoPagina == 'TAREAS' ? <ListaDeTareas /> : <ListaDePosts irAPost={params.irAPost} />
+    params.codigoPagina == 'TAREAS' ? <ListaDeTareas /> :
+    params.codigoPagina == 'POSTS' ? <ListaDePosts irAPost={params.irAPost}/>:
+    <Mapa /> 
     
 )
 
